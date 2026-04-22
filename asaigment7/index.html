@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Portal Kampus</title>
+</head>
+
+<body>
+    <h1 id="judul">Selamat Datang</h1>
+    <button onclick="ubahJudul()">Ubah
+        Judul</button>
+    <script>
+        function ubahJudul() {
+            document.getElementById("judul").textContent = "Selamat Datang di Sistem Informasi UAG!";
+        }
+    </script>
+</body>
+
+</html>
+<ul id="menu">
+    <li>Beranda</li>
+    <li>Profil</li>
+    <li>Kontak</li>
+</ul>
+<script>
+    document.getElementById("menu").addEventListener("click", function (e) {
+        if (e.target.tagName === "LI") {
+            e.target.style.color = "red";
+        }
+    });
+</script>
+<p id="teks">Ini adalah paragraf yang akan
+    berubah.</p>
+<button onclick="gantiWarna()">Ganti
+    Tampilan</button>
+<script>
+    function gantiWarna() {
+        const p = document.getElementById("teks");
+        p.style.backgroundColor = "#cceeff";
+        p.style.color = "#003366";
+    }
+</script>
+<p id="teks">Ini adalah paragraf yang akan
+    berubah.</p>
+<button onclick="gantiWarna()">Ganti
+    Tampilan</button>
+<script>
+    function gantiWarna() {
+        const p = document.getElementById("teks");
+        p.style.backgroundColor = "#cceeff";
+        p.style.color = "#003366";
+    }
+</script>
+<h2>To-Do List</h2>
+<input type="text" id="task" placeholder="Masukkan tugas">
+<button onclick="tambahTugas()">Tambah</button>
+<input type="text" id="search" placeholder="Cari tugas..." onkeyup="filterTugas()">
+<ul id="daftar-tugas"></ul>
+<script>
+    function tambahTugas() {
+        const input = document.getElementById("task");
+        const ul = document.getElementById("daftar-tugas");
+        const li = document.createElement("li");
+        li.textContent = input.value;
+        li.onclick = function () {
+            const teksLama = li.textContent;
+            const inputEdit = document.createElement("input");
+            inputEdit.type = "text";
+            inputEdit.value = teksLama;
+
+            li.textContent = "";
+            li.appendChild(inputEdit);
+            inputEdit.focus();
+
+            inputEdit.onblur = function () {
+                li.textContent = inputEdit.value;
+            };
+
+            inputEdit.onkeypress = function (e) {
+                if (e.key === "Enter") {
+                    li.textContent = inputEdit.value;
+                }
+            };
+        };
+        li.remove();
+    };
+    ul.appendChild(li);
+    input.value = "";
+}
+</script>
+<input type="text" id="belanja" placeholder="Tambah item">
+<button onclick="tambahItem()">Tambah</button>
+<ul id="list-belanja"></ul>
+<script>
+    function tambahItem() {
+        const input =
+            document.getElementById("belanja");
+        const ul = document.getElementById("list-belanja");
+        const li = document.createElement("li");
+        li.textContent = input.value;
+        li.onclick = function () {
+            li.classList.toggle("selesai");
+        };
+        ul.appendChild(li);
+        input.value = "";
+    }
+</script>
+
+<style>
+    .selesai {
+        text-decoration: line-through;
+        color: gray;
+    }
+</style>
